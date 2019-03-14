@@ -1,0 +1,9 @@
+{
+  "devToolsPort": 19002,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 480,
+  "expoServerNgrokUrl": "https://hk-v3r.anonymous.sample-proapi.exp.direct",
+  "packagerNgrokUrl": "https://packager.hk-v3r.anonymous.sample-proapi.exp.direct",
+  "ngrokPid": 4364
+}
