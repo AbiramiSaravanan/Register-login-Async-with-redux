@@ -8,25 +8,30 @@ import {
   TouchableOpacity,
   View,
   TextInput,
+  TouchableHighlight,
   
 } from 'react-native';
 import { } from 'react-native-elements';
 import { SearchBar } from 'react-native-elements';
 import {  } from 'react-native-elements';
-import { Container, Item, Input, Icon, Button,Header,Content,List,ListItem,Left, Right, Body,Separator,Tab, Tabs,Card,CardItem} from 'native-base';
+import { Container, Item, Input, Icon, Header,Button,Content,Thumbnail,List,ListItem,Left, Right, Body,Separator,Tab, Tabs,Card,CardItem, Title} from 'native-base';
 import { WebBrowser } from 'expo';
 import { Rating, AirbnbRating } from 'react-native-elements';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+import Details from './Details';
+import Producttwo from './Producttwo';
 
 
 
 
-export default class HomeScreen extends React.Component {
+
+  export  class HomeScreen extends React.Component {
   
   
 
   static navigationOptions = {
 
-    title:'KNOWLEDGE POOL',
+    title:null,
     
   };
 
@@ -34,6 +39,7 @@ export default class HomeScreen extends React.Component {
 
   render() {
    
+    
     return (
 
       <Container>
@@ -43,140 +49,267 @@ export default class HomeScreen extends React.Component {
       <Icon name='menu'/>
       </Left>
           
-          <Item>
+          <Item style={styles.searchbar}>
             <Icon name="ios-search" /> 
             <Input placeholder="Search" />
-          <Icon name="ios-people" />
+          <Icon name="cart" />
           </Item>
           
         </Header>
         <Content>
         <Tabs>
-          <Tab heading="ACADEMICS">
-          <Text>
-            listen to the audio of all subjects
-          </Text>
-          <List>
-            <ListItem selected>
-              <Left>
-                <Text >SCIENCE</Text>
-              </Left>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </ListItem>
-            <ListItem>
-             <Left>
-                <Text>HISTORY</Text>
-              </Left>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </ListItem>
-            <ListItem>
-              <Left>
-                <Text>GEOGRAPHY</Text>
-              </Left>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </ListItem>
-            <ListItem>
-              <Left>
-                <Text>POLITICS</Text>
-              </Left>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </ListItem>
-            <ListItem>
-              <Left>
-                <Text>ECONOMICS</Text>
-              </Left>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </ListItem>
-          </List>
+          <Tab heading="ALL">
+          <Content>
+            <Text>{"\n"}</Text>
+            <Text style={{textAlign:'center',fontWeight:'bold',fontSize:20,color:'grey'}}>------ OUR POPULAR PRODUCTS ------</Text>
+            <Text>{"\n"}</Text>
+          <Card>
+          <TouchableHighlight onPress={() => this.props.navigation.navigate('Details')}>
+            <CardItem cardBody>
+            
+            
+              <Image  source={{uri: 'https://i.ytimg.com/vi/ac0XpJceIXo/maxresdefault.jpg'}} style={{height: 200, width: null, flex: 1}}/>
+            </CardItem>
+            </TouchableHighlight>
 
-          </Tab>
-          <Tab heading="STORIES">
-          <Text>
-            Watch to the video of all subjects
-            </Text>
-            <List>
-            <ListItem itemHeader first style={styles.topics}>
-              <Text >COMEDY</Text>
-            </ListItem>
-            <ListItem >
-              <Text>Hangover</Text>
-            </ListItem>
-            <ListItem >
-              <Text>The Thin Man</Text>
-            </ListItem>
-            <ListItem last>
-              <Text>Cop Out</Text>
-            </ListItem>
-            <ListItem itemHeader style={styles.topics}>
-              <Text >ACTION</Text>
-            </ListItem>
-            <ListItem>
-              <Text>Terminator Genesis</Text>
-            </ListItem>
-            <ListItem>
-              <Text>Catch-22</Text>
-            </ListItem>
-            <ListItem>
-              <Text>The BraveWorld</Text>
-            </ListItem>
-            <ListItem itemHeader style={styles.topics}>
-              <Text >DETECTIVE</Text>
-            </ListItem>
-            <ListItem>
-              <Text>MoonStone</Text>
-            </ListItem>
-            <ListItem>
-              <Text>SherlockHolmes</Text>
-            </ListItem>
-            <ListItem>
-              <Text>Poison by dorthy</Text>
-            </ListItem>
-          </List>
+            </Card>
+
+            <Card>
+            <CardItem cardBody>
+              <Image source={{uri: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-626675236-index-extreme-1521650990.jpg'}} style={{height: 200, width: null, flex: 1}}/>
+            </CardItem>
+            </Card><Card>
+            <CardItem cardBody>
+              <Image source={{uri: 'https://scstylecaster.files.wordpress.com/2016/03/street-style-two-toned-jean-jacket.jpg'}} style={{height: 200, width: null, flex: 1}}/>
+            </CardItem>
+            </Card>
+            <Card>
+            <CardItem cardBody>
+              <Image source={{uri: 'https://www.greatbuyz.com/blog/wp-content/uploads/2018/05/For-Childrens-Clothes-Online-660x400.jpg'}} style={{height: 200, width: null, flex: 1}}/>
+            </CardItem>
+            </Card>
+
+
+          </Content>
+           </Tab>
+
+
+          <Tab heading="MAN">
+          <View >
+         <View style={styles.twocardsinglerow}>
+           <Card style={styles.cardrow} >
+           <TouchableHighlight onPress={() => this.props.navigation.navigate('individualproduct')}>
+           <CardItem cardBody>
+              <Image source={{uri: 'https://i.pinimg.com/236x/bb/9f/78/bb9f78e70cf54834e5e14f26cde6756e.jpg'}} style={{height: 250, width: null, flex: 1}}/>
+            </CardItem>
+            </TouchableHighlight>
+             <Text style={styles.description}>Salamon Shirt{"\n"}</Text>
+            <Text style={styles.description}>$32,000</Text>  
+           
+           </Card>
+           <Card style={styles.cardrow}>
+           <TouchableHighlight onPress={() => {
+            // const pushAction = StackActions.push({
+            //   routeName: 'individualproduct',
+            //   params: {"shirt":"Salmon", "price":"500"},
+            // });
+             this.props.navigation.navigate('individualproduct',{params:"hi"})}
+             
+             }>
+           <CardItem cardBody>
+              <Image source={{uri: 'https://s-media-cache-ak0.pinimg.com/originals/c2/1d/aa/c21daa62cffcf32aecc85583c829838f.jpg'}} style={{height: 250, width: null, flex: 1}}/>
+            </CardItem>
+            </TouchableHighlight>
+            <Text style={styles.description}>Salamon Shirt{"\n"}</Text>
+            <Text style={styles.description}>$32,000</Text>  
+           </Card>
+
+         </View>
+         <View style={styles.twocardsinglerow}>
+           <Card style={styles.cardrow} >
+           <TouchableHighlight onPress={() => this.props.navigation.navigate('individualproduct')}>
+           <CardItem cardBody>
+              <Image source={{uri: 'https://www.sufivilla.com/wp-content/uploads/2018/09/Roadster-Men-Navy-Blue-Beige-Regular-Fit-Checked-Casual-Shirtt.jpg'}} style={{height: 250, width: null, flex: 1}}/>
+            </CardItem>
+            </TouchableHighlight>
+            <Text style={styles.description}>Salamon Shirt{"\n"}</Text>
+            <Text style={styles.description}>$32,000</Text>  
+           </Card>
+           <Card style={styles.cardrow}>
+           <TouchableHighlight onPress={() => this.props.navigation.navigate('individualproduct')}>
+           <CardItem cardBody>
+              <Image source={{uri: 'https://assets.jassets.com/h_533,q_95,w_391/v1/assets/images/productImage/2018/7/6/5d979f4e-6923-4e79-b1bc-c541a1cfe7a51530830918683-1.jpg'}} style={{height: 250, width: null, flex: 1}}/>
+            </CardItem>
+            </TouchableHighlight>
+            <Text style={styles.description}>Salamon Shirt{"\n"}</Text>
+            <Text style={styles.description}>$32,000</Text>  
+            </Card>
+            </View>
+
+            <Card style={height=400}>
+            <CardItem cardBody>
+              <Image source={{uri: 'https://d224nth7ac0evy.cloudfront.net/blog/cache/840x620/magefan_blog/Blog-Ideas-Man.jpg'}} style={{height: 270, width: null, flex: 1}}/>
+            </CardItem>
+           
+            </Card>
+
+            <View style={styles.twocardsinglerow}>
+           <Card style={styles.cardrow} >
+           <TouchableHighlight onPress={() => this.props.navigation.navigate('individualproduct')}>
+
+           <CardItem cardBody>
+              <Image source={{uri: 'https://xcdn.next.co.uk/Common/Items/Default/Default/ItemImages/Search/224x336/556296.jpg?X56'}} style={{height: 250, width: null, flex: 1}}/>
+            </CardItem>
+            </TouchableHighlight>
+            <Text style={styles.description}>Salamon Shirt{"\n"}</Text>
+            <Text style={styles.description}>$32,000</Text>  
+           </Card>
+           <Card style={styles.cardrow}>
+           <TouchableHighlight onPress={() => this.props.navigation.navigate('individualproduct')}>
+          <CardItem cardBody>
+              <Image source={{uri: 'https://cdn.webshopapp.com/shops/201242/files/227697530/roy-robson-robson-grey-marbled-coat.jpg'}} style={{height: 250, width: null, flex: 1}}/>
+            </CardItem>
+            </TouchableHighlight>
+            <Text style={styles.description}>Salamon Shirt{"\n"}</Text>
+            <Text style={styles.description}>$32,000</Text>  
+            </Card>
+            </View>
+            
+            </View>
+         </Tab>
+
+
+
+          <Tab heading="WOMAN">
+          <View >
+
+          <Card style={height=400}>
+            <CardItem cardBody>
+              <Image source={{uri: 'https://blog.befunky.com/wp-content/uploads/2015/11/hellofall4.jpg'}} style={{height: 250, width: null, flex: 1}}/>
+            </CardItem>
+           
+            </Card>
+
+         <View style={styles.twocardsinglerow}>
+           <Card style={styles.cardrow} >
+           <CardItem cardBody>
+              <Image source={{uri: 'http://www.bnyconline.com/common/images/products/large/CAW348-8506_1.JPG'}} style={{height: 250, width: null, flex: 1}}/>
+            </CardItem>
+            <Text style={styles.description}>Salamon Shirt{"\n"}</Text>
+            <Text style={styles.description}>$32,000</Text>  
+           </Card>
+           <Card style={styles.cardrow}>
+           <CardItem cardBody>
+              <Image source={{uri: 'http://www.bnyconline.com/common/images/products/large/CAW001-1584_1.JPG'}} style={{height: 250, width: null, flex: 1}}/>
+            </CardItem>
+            <Text style={styles.description}>Salamon Shirt{"\n"}</Text>
+            <Text style={styles.description}>$32,000</Text>  
+           </Card>
+
+         </View>
+         <View style={styles.twocardsinglerow}>
+           <Card style={styles.cardrow} >
+           <CardItem cardBody>
+              <Image source={{uri: 'https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/1382567/2016/6/15/11465994028754-Marie-Claire-Women-Shirts-6161465994028342-1.jpg'}} style={{height: 250, width: null, flex: 1}}/>
+            </CardItem>
+            <Text style={styles.description}>Salamon Shirt{"\n"}</Text>
+            <Text style={styles.description}>$32,000</Text>  
+           </Card>
+           <Card style={styles.cardrow}>
+           <CardItem cardBody>
+              <Image source={{uri: 'https://logoshirtsdirect.com/wp-content/uploads/2015/07/Calvin_Klein_13CK018_Model_Shot_High-e1438194708660.jpg'}} style={{height: 250, width: null, flex: 1}}/>
+            </CardItem>
+            <Text style={styles.description}>Salamon Shirt{"\n"}</Text>
+            <Text style={styles.description}>$32,000</Text>  
+            </Card>
+            </View>
+
+            
+
+            <View style={styles.twocardsinglerow}>
+           <Card style={styles.cardrow} >
+           <CardItem cardBody>
+              <Image source={{uri: 'http://assets.myntassets.com/assets/images/2472770/2018/4/16/11523871771015-Anouk-Women-Kurta-Sets-4971523871770872-1.jpg'}} style={{height: 250, width: null, flex: 1}}/>
+            </CardItem>
+            <Text style={styles.description}>Salamon Shirt{"\n"}</Text>
+            <Text style={styles.description}>$32,000</Text>  
+           </Card>
+           <Card style={styles.cardrow}>
+           <CardItem cardBody>
+              <Image source={{uri: 'http://assets.myntassets.com/assets/images/1959685/2018/4/13/11523618856320-Vishudh-Women-Navy-Blue-Printed-Anarkali-Kurta-5201523618856141-1.jpg'}} style={{height: 250, width: null, flex: 1}}/>
+            </CardItem>
+            <Text style={styles.description}>Salamon Shirt{"\n"}</Text>
+            <Text style={styles.description}>$32,000</Text>  
+            </Card>
+            </View>
+            
+            </View>
           
           </Tab>
-          <Tab heading="GENERAL">
-          <Text>
-            read the content of all subjects
-            </Text>
-            <List>
-            <ListItem itemDivider style={styles.topics}>
-              <Text >A</Text>
-            </ListItem>                    
-            <ListItem>
-              <Text>Animals</Text>
-            </ListItem>
-            <ListItem>
-              <Text>Ancient</Text>
-            </ListItem>
-            <ListItem itemDivider style={styles.topics}>
-              <Text >B</Text>
-            </ListItem>  
-            <ListItem>
-              <Text>Business</Text>
-            </ListItem>
-            <ListItem>
-              <Text>Botany</Text>
-            </ListItem>
-            <ListItem itemDivider style={styles.topics}>
-              <Text >C</Text>
-            </ListItem>  
-            <ListItem>
-              <Text>Current Affairs</Text>
-            </ListItem>
-            <ListItem>
-              <Text>Computers</Text>
-            </ListItem>
-          </List>
+          <Tab heading="KIDS">
+          <View >
+
+<Card style={height=400}>
+  <CardItem cardBody>
+    <Image source={{uri: 'https://fashionista.com/.image/t_share/MTM2MTE1NjM4NjE0NjYxNTk4/20367-2-bln-03b-aj--20_188_a4jpg.jpg'}} style={{height: 250, width: null, flex: 1}}/>
+  </CardItem>
+ 
+  </Card>
+
+<View style={styles.twocardsinglerow}>
+ <Card style={styles.cardrow} >
+ <CardItem cardBody>
+    <Image source={{uri: 'https://assets.abfrlcdn.com/img/app/categorymedia/production/7/76-37-6470.jpg'}} style={{height: 250, width: null, flex: 1}}/>
+  </CardItem>
+  <Text style={styles.description}>Salamon Shirt{"\n"}</Text>
+  <Text style={styles.description}>$32,000</Text>  
+ </Card>
+ <Card style={styles.cardrow}>
+ <CardItem cardBody>
+    <Image source={{uri: 'https://i.pinimg.com/originals/66/33/1a/66331a40d3ede4c1ba4fa3977ac7c8cb.jpg'}} style={{height: 250, width: null, flex: 1}}/>
+  </CardItem>
+  <Text style={styles.description}>Salamon Shirt{"\n"}</Text>
+  <Text style={styles.description}>$32,000</Text>  
+ </Card>
+
+</View>
+<View style={styles.twocardsinglerow}>
+ <Card style={styles.cardrow} >
+ <CardItem cardBody>
+    <Image source={{uri: 'https://i.pinimg.com/originals/17/ba/68/17ba68288e303bcc46f5daf3187ddbb3.jpg'}} style={{height: 250, width: null, flex: 1}}/>
+  </CardItem>
+  <Text style={styles.description}>Salamon Shirt{"\n"}</Text>
+  <Text style={styles.description}>$32,000</Text>  
+ </Card>
+ <Card style={styles.cardrow}>
+ <CardItem cardBody>
+    <Image source={{uri: 'http://designersoutfits.com/wp-content/uploads/2016/03/dresses-ideas-for-kids-girls-for-summer-15.jpg'}} style={{height: 250, width: null, flex: 1}}/>
+  </CardItem>
+  <Text style={styles.description}>Salamon Shirt{"\n"}</Text>
+  <Text style={styles.description}>$32,000</Text>  
+  </Card>
+  </View>
+
+  
+
+  <View style={styles.twocardsinglerow}>
+ <Card style={styles.cardrow} >
+ <CardItem cardBody>
+    <Image source={{uri: 'https://i.pinimg.com/originals/a9/9a/0b/a99a0bdc93ec7a99c1a30915d8d17fc8.jpg'}} style={{height: 250, width: null, flex: 1}}/>
+  </CardItem>
+  <Text style={styles.description}>Salamon Shirt{"\n"}</Text>
+  <Text style={styles.description}>$32,000</Text>  
+ </Card>
+ <Card style={styles.cardrow}>
+ <CardItem cardBody>
+    <Image source={{uri: 'https://assets.abfrlcdn.com/img/app/categorymedia/production/7/77-37-6475.jpg'}} style={{height: 250, width: null, flex: 1}}/>
+  </CardItem>
+  <Text style={styles.description}>Salamon Shirt{"\n"}</Text>
+  <Text style={styles.description}>$32,000</Text>  
+  </Card>
+  </View>
+  
+  </View>
           
           </Tab>
         </Tabs>
@@ -238,6 +371,8 @@ export default class HomeScreen extends React.Component {
 
         </Content>
       </Container>
+
+
       
 )
     }
@@ -258,6 +393,54 @@ export default class HomeScreen extends React.Component {
     topics:{
       backgroundColor:'grey',
       fontWeight:'bold',
-    }
+    },
+    searchbar:{
+     marginRight:20,
+    },
+    twocardsinglerow:{
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'space-evenly',
+    },
+    cardrow:{
+      width:170,
+      height:300,
+    },
+   description:{
+     textAlign:'center',
+     fontWeight:'bold',
+   },
 
   }); 
+
+  class DetailsScreen extends React.Component {
+    render() {
+      return (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Text>Details Screen</Text>
+        </View>
+      );
+    }
+  }
+  const Rootstack = createStackNavigator({
+    Home: HomeScreen,
+    Details: DetailsScreen,
+    individualproduct:Details,
+    secondpro:Producttwo,
+   
+    
+  },
+  {
+    initialRouteName: 'Home',
+  }
+  
+  );
+  
+  
+  const AppContainer = createAppContainer(Rootstack);
+
+  export default class App extends React.Component {
+    render() {
+      return <AppContainer />;
+    }
+  }

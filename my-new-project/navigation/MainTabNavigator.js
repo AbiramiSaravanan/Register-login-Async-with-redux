@@ -9,7 +9,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
-});
+},{headerMode:'none'});
 
 HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
@@ -41,7 +41,7 @@ LinksStack.navigationOptions = {
 
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen,
-});
+},{headerMode:'none'});
 
 SettingsStack.navigationOptions = {
   tabBarLabel: 'Settings',

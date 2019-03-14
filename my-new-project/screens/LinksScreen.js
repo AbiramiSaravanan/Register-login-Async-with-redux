@@ -1,17 +1,61 @@
 import React from 'react';
-import { ScrollView, StyleSheet,Image,TextInput } from 'react-native';
+import { ScrollView, StyleSheet,Image,Alert,Keyboard,TextInput,AsyncStorage} from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
-import { Content,Text,Icon,Right,Card,CardItem,Form,Item,Input,Button,Toast,Footer, Container } from 'native-base';
+import { Content,Text,Icon,Right,Card,CardItem,Form,Item,Button,Toast,Footer, Container } from 'native-base';
 import { Tile } from 'react-native-elements';
 
 export default class LinksScreen extends React.Component {
+constructor(props){
+  super(props)
+  this.state={
+uname:'',pwd:''
+  };
+
+}
+
+
   static navigationOptions = {
     title: 'Hitcher',
   };
 
+ 
+
+  saveddata=()=>{
+const{uname,pwd}=this.state;
+
+let myArray={
+  uname:uname,
+  pwd:pwd
+}
+
+AsyncStorage.setItem('myArray',JSON.stringify(myArray));
+
+
+Keyboard.dismiss();
+
+
+    Alert.
+      alert(uname+ ' '+pwd),
+      [
+        {text: 'ok', onPress: () => console.log('Yes Pressed')},
+        {text: 'cancel', onPress: () => console.log('No Pressed'), style: 'cancel'},
+      ],
+      { cancelable: false }
+      //clicking out side of alert will not cancel
+    
+  }
+
+  showData=async()=>{
+    let myArray=await AsyncStorage.getItem('myArray');
+    let d=JSON.parse(myArray);
+    alert(d.uname + ' ' + d.pwd);
+  }
+
   render() {
+   
+
     return (
-      <Container>
+      <ScrollView>
       <Content>
        <Card>
             <CardItem>
@@ -58,52 +102,37 @@ export default class LinksScreen extends React.Component {
           
         
        <Card>
-         <Tile>
-         imageSrc={require('C:\Users\Abirami\Desktop\pexels-photo-531880.jpeg')}
-            <Item>
-              <Input placeholder="Username"/>
-            </Item>
-            <Item last>
-              <Input placeholder="Password" />
-            </Item>
-            <Button onPress={()=> Toast.show({
-              text: 'Wrong password!',
-              buttonText: 'Okay'
-            })}>>
-            <Text style={{textAlign:'center'}}>sign in</Text>
+       <TextInput
+        style={{color:'white',height: 50, borderColor: 'gray', borderWidth: 2,borderRightWidth:1,width:250,marginLeft:55,marginTop:10,textAlign:'center'}}
+       placeholder={'Username'}
+       placeholderTextColor={'black'}
+       onChangeText={(uname) => this.setState({uname})}
+     />
+      <TextInput
+        style={{color:'white',height: 50, borderColor: 'gray', borderWidth: 2,borderRightWidth:1,width:250,marginLeft:55,marginTop:65,textAlign:'center'}}
+       placeholder={'Password'}
+       placeholderTextColor={'black'}
+       onChangeText={(pwd) => this.setState({pwd})}
+       
+      />
+            <Button onPress={this.saveddata}>
+            <Text style={{textAlign:'center'}}   >save data</Text>
           </Button>
-          </Tile>
+          <Button onPress={this.showData}>
+            <Text style={{textAlign:'center'}}>display 
+            
+            
+            data</Text>
+          </Button>
+         
           </Card>
 
 
       
       </Content>
-      <Footer>
-          <FooterTab>
-            <Button>
-              <Icon name="apps" />
-            </Button>
-            <Button>
-              <Icon name="camera" />
-            </Button>
-            <Button active>
-              <Icon active name="navigate" />
-            </Button>
-            <Button>
-              <Icon name="person" />
-            </Button>
-          </FooterTab>
-        </Footer>
-    </Container>
+      </ScrollView>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  bg: {
-    backgroundColor:'grey',
-    
-  },
-  
 
-}); 
